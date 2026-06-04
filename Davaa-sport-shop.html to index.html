@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Davaa Sport Shop</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #ff9900;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+        .product-card {
+            background-color: #2a2a2a;
+            border-radius: 12px;
+            padding: 15px;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            background: radial-gradient(circle, #3a3a3a 0%, #111111 100%); /* Зургийн арын фоныг гоё харагдуулах стил */
+            padding: 5px;
+        }
+        .product-title {
+            font-size: 1.2rem;
+            margin: 15px 0 8px 0;
+            color: #f1f1f1;
+        }
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ff9900;
+            margin: 0 0 10px 0;
+        }
+        .btn-buy {
+            background-color: #ff9900;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+        .btn-buy:hover {
+            background-color: #e68a00;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Davaa Sport Shop - Шинэ Сагсны Өмсгөлүүд</h1>
+
+    <div class="product-container">
+
+        <!-- Бараа 1 -->
+        <div class="product-card">
+            <img src="sport1.jpg" alt="2K4 Нитро Сет">
+            <h3 class="product-title">2K4 Нитро Лимитэд Сет</h3>
+            <p class="product-price">32,000₮</p>
+            <button class="btn-buy">Захиалах</button>
+        </div>
+
+        <!-- Бараа 2 -->
+        <div class="product-card">
+            <img src="sport2.jpg" alt="Сагадай Классик">
+            <h3 class="product-title">"Сагадай" Элит Студи Өмсгөл</h3>
+            <p class="product-price">32,000₮</p>
+            <button class="btn-buy">Захиалах</button>
+        </div>
+
+        <!-- Бараа 3 -->
+        <div class="product-card">
+            <img src="sport3.jpg" alt="Монгол Аравт Сет">
+            <h3 class="product-title">"Монгол Аравт" Ногоон Сет</h3>
+            <p class="product-price">32,000₮</p>
+            <button class="btn-buy">Захиалах</button>
+        </div>
+
+        <!-- Бараа 4 -->
+        <div class="product-card">
+            <img src="sport4.jpg" alt="Алтан Сүлд Сет">
+            <h3 class="product-title">"Алтан Сүлд" Шар-Нийлэг Өмсгөл</h3>
+            <p class="product-price">32,000₮</p>
+            <button class="btn-buy">Захиалах</button>
+        </div>
+
+        <!-- Бараа 5 -->
+        <div class="product-card">
+            <img src="sport5.jpg" alt="Өнгөт Спектр">
+            <h3 class="product-title">"Спектр" Өнгөт Минимал Сет</h3>
+            <p class="product-price">28,000₮</p>
+            <button class="btn-buy">Захиалах</button>
+        </div>
+
+        <!-- Бараа 6 -->
+        <div class="product-card">
+            <img src="sport6.jpg" alt="Ол Стар Одтой Цамц">
+            <h3 class="product-title">"All-Star" Одтой Цагаан Өмсгөл</h3>
+            <p class="product-price">32,000₮</p>
+            <button class="btn-buy">Захиалах</button>
+        </div>
+
+        <!-- Бараа 7 -->
+        <div class="product-card">
+            <img src="sport7.jpg" alt="Неон Глөү Өмсгөл">
+            <h3 class="product-title">"Неон Глөү" Спорт Сет</h3>
+            <p class="product-price">28,000₮</p>
+            <button class="btn-buy">Захиалах</button>
+        </div>
+
+        <!-- Бараа 8 -->
+        <div class="product-card">
+            <img src="sport8.jpg" alt="Блейз Түү-Вэй">
+            <h3 class="product-title">"Блейз" Хоёр Талт Бэлтгэлийн Майк</h3>
+            <p class="product-price">28,000₮</p>
+            <button class="btn-buy">Захиалах</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
