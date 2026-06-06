@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Davaa Sport Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d0d0d;color:#f0f0f0;font-family:'Inter',sans-serif;overflow-x:hidden}
+:root{--gold:#e8b84b;--red:#e63946;--dark:#0d0d0d;--dark2:#141414;--dark3:#1c1c1c}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2.5rem;background:rgba(13,13,13,0.97);border-bottom:1px solid rgba(232,184,75,0.2);position:sticky;top:0;z-index:200}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.15em;color:var(--gold)}
+.logo span{color:#fff}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:#888;text-decoration:none;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s;cursor:pointer}
+.nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.cart-pill{background:var(--gold);color:#0d0d0d;border:none;padding:0.55rem 1.4rem;font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;font-family:'Inter',sans-serif;transition:all 0.3s}
+.cart-pill:hover{background:#f5c842;transform:translateY(-1px)}
+
+.hero{height:88vh;position:relative;display:flex;align-items:center;overflow:hidden;background:#0d0d0d}
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-inner{position:relative;z-index:2;padding:0 3rem;max-width:600px}
+.hero-eyebrow{font-size:0.65rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.8rem}
+.hero-eyebrow::before{content:'';display:block;width:30px;height:1px;background:var(--gold)}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:6.5rem;line-height:0.92;color:#fff;margin-bottom:1.5rem}
+.hero-h1 em{color:var(--gold);font-style:normal}
+.hero-p{color:#777;font-size:0.82rem;line-height:1.8;margin-bottom:2.5rem;max-width:380px}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:#0d0d0d;border:none;padding:0.9rem 2.2rem;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;border-radius:2px;transition:all 0.3s}
+.btn-gold:hover{background:#f5c842;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:#888;border:1px solid #333;padding:0.9rem 2.2rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;border-radius:2px;transition:all 0.3s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #1e1e1e;border-bottom:1px solid #1e1e1e;background:#111}
+.stat{padding:1.5rem 2.5rem;text-align:center;border-right:1px solid #1e1e1e}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);letter-spacing:0.05em}
+.stat-l{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#555;margin-top:0.2rem}
+
+.section{padding:4.5rem 2.5rem}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem}
+.sec-tag{font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:#fff;letter-spacing:0.05em}
+.see-all{font-size:0.65rem;letter-spacing:0.15em;color:#666;text-transform:uppercase;cursor:pointer;border-bottom:1px solid #333;padding-bottom:2px;transition:all 0.3s}
+.see-all:hover{color:var(--gold);border-color:var(--gold)}
+
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#1a1a1a}
+.pcard{background:#0d0d0d;overflow:hidden;cursor:pointer;transition:all 0.4s;position:relative}
+.pcard:hover{background:#111}
+.pimg-wrap{height:260px;background:#111;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.pbadge{position:absolute;top:1rem;right:1rem;background:var(--red);color:#fff;font-size:0.58rem;font-weight:600;letter-spacing:0.12em;padding:0.3rem 0.7rem;text-transform:uppercase;border-radius:2px}
+.pbadge.gold{background:var(--gold);color:#0d0d0d}
+.pinfo{padding:1.2rem 1.4rem;border-top:1px solid #1a1a1a}
+.pname{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:#f0f0f0;letter-spacing:0.05em;margin-bottom:0.2rem}
+.pcat{font-size:0.6rem;letter-spacing:0.2em;color:#555;text-transform:uppercase;margin-bottom:0.8rem}
+.sizes{display:flex;gap:0.3rem;margin-bottom:0.8rem;flex-wrap:wrap}
+.sz{padding:4px 8px;border:1px solid #222;display:flex;align-items:center;justify-content:center;font-size:0.58rem;color:#555;cursor:pointer;border-radius:2px;transition:all 0.2s}
+.sz:hover,.sz.active{border-color:var(--gold);color:var(--gold)}
+.pfoot{display:flex;justify-content:space-between;align-items:center}
+.pprice{font-size:1rem;font-weight:600;color:var(--gold)}
+.pprice small{font-size:0.62rem;color:#555;font-weight:400;margin-left:4px}
+.padd{background:transparent;border:1px solid #2a2a2a;color:#888;padding:0.45rem 0.9rem;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;border-radius:2px;transition:all 0.3s}
+.padd:hover{background:var(--gold);color:#0d0d0d;border-color:var(--gold)}
+
+.category-tabs{display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.tab{padding:0.6rem 1.4rem;border:1px solid #222;color:#666;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all 0.3s;font-family:'Inter',sans-serif;background:transparent}
+.tab:hover,.tab.active{border-color:var(--gold);color:var(--gold);background:rgba(232,184,75,0.05)}
+
+.promo{margin:0 2.5rem 4rem;background:var(--dark3);border:1px solid #222;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;position:relative;overflow:hidden}
+.promo h2{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:#fff;line-height:1;margin-bottom:1rem}
+.promo h2 span{color:var(--gold)}
+.promo p{color:#666;font-size:0.8rem;line-height:1.8;margin-bottom:1.5rem}
+.promo-badge{position:absolute;top:2rem;right:2rem;width:80px;height:80px;border-radius:50%;background:var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif}
+.promo-badge .pct{font-size:1.6rem;color:#fff;line-height:1}
+.promo-badge .off{font-size:0.55rem;color:rgba(255,255,255,0.8);letter-spacing:0.1em}
+
+.footer{border-top:1px solid #1a1a1a;padding:2.5rem;display:flex;justify-content:space-between;align-items:center}
+.fl{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);letter-spacing:0.15em}
+.fl span{color:#fff}
+.fr{font-size:0.62rem;color:#444;letter-spacing:0.1em}
+
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(60px);background:var(--gold);color:#0d0d0d;padding:0.8rem 2rem;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;border-radius:2px;opacity:0;transition:all 0.35s;z-index:999;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.2rem}
+  .nav-links{display:none}
+  .hero-h1{font-size:3.5rem}
+  .hero-inner{padding:0 1.5rem}
+  .products{grid-template-columns:1fr 1fr}
+  .stats-bar{grid-template-columns:1fr}
+  .stat{border-right:none;border-bottom:1px solid #1e1e1e}
+  .promo{grid-template-columns:1fr;margin:0 1.2rem 3rem}
+  .section{padding:3rem 1.2rem}
+  .footer{flex-direction:column;gap:1rem;text-align:center}
+}
+@media(max-width:480px){
+  .products{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">DAVAA <span>SPORT</span></div>
+  <ul class="nav-links">
+    <li><a onclick="showSection('sport')">Спортын омсгол</a></li>
+    <li><a onclick="showSection('volleyball')">Volleyball</a></li>
+    <li><a onclick="showToast('Удахгүй нэмэгдэнэ!')">Шинэ</a></li>
+    <li><a onclick="showToast('📞 Утас: 9900-0000')">Холбоо барих</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-pill" id="cartBtn">🛒 Саг (0)</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Монголын спортын хувцас</p>
+    <h1 class="hero-h1">ДАВAA<br><em>SPORT</em><br>SHOP</h1>
+    <p class="hero-p">Чанартай спортын омсгол, volleyball хувцас. Хүргэлт хийнэ.</p>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Бараа үзэх ↓</button>
+      <button class="btn-ghost" onclick="showToast('Удахгүй нэмэгдэнэ!')">Шинэ цуглуулга</button>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Бүтээгдэхүүн</div></div>
+  <div class="stat"><div class="stat-n">2,400+</div><div class="stat-l">Сэтгэл ханасан үйлчлүүлэгч</div></div>
+  <div class="stat"><div class="stat-n">1–2 өдөр</div><div class="stat-l">Хүргэлтийн хугацаа</div></div>
+</div>
+
+<section class="section" id="products">
+  <div class="sec-head">
+    <div>
+      <div class="sec-tag">Онцлох бараа</div>
+      <div class="sec-title" id="secTitle">Бүх бүтээгдэхүүн</div>
+    </div>
+    <div class="see-all" onclick="showToast('Бүх бараа удахгүй!')">Бүгдийг үзэх →</div>
+  </div>
+
+  <div class="category-tabs">
+    <button class="tab active" onclick="filterCat('all',this)">Бүгд</button>
+    <button class="tab" onclick="filterCat('sport',this)">🏃 Спортын омсгол</button>
+    <button class="tab" onclick="filterCat('volleyball',this)">🏐 Volleyball</button>
+  </div>
+
+  <div class="products" id="productGrid"></div>
+</section>
+
+<div class="promo">
+  <div>
+    <h2>АНХНЫ<br>ЗАХИАЛГАД<br><span>10% ХӨНГӨЛӨЛТ</span></h2>
+    <p>Утасны дугаараа үлдээгээрэй. Давaa Sport Shop-ын мэдээлэл, хямдрал авах боломжтой.</p>
+    <button class="btn-gold" onclick="showToast('Баярлалаа! Удахгүй холбогдоно 📞')">Бүртгүүлэх</button>
+  </div>
+  <div style="text-align:center">
+    <canvas id="promoCanvas" width="200" height="200"></canvas>
+  </div>
+  <div class="promo-badge">
+    <div class="pct">10%</div>
+    <div class="off">ХЭМНЭЛТ</div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="fl">DAVAA <span>SPORT</span></div>
+  <div class="fr">📍 Улаанбаатар &nbsp;·&nbsp; 📞 9900-0000 &nbsp;·&nbsp; © 2025 Davaa Sport Shop</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var cart = 0;
+
+var products = [
+  {id:1, name:'Pro Fit Leggings', cat:'sport', price:'₮19,000', badge:'Шинэ', badgeType:'red', sizes:['XS','S','M','L','XL'], color:'#1a1a2e'},
+  {id:2, name:'Elite Compression', cat:'sport', price:'₮28,000', badge:'Эрэлттэй', badgeType:'gold', sizes:['XS','S','M','L','XL'], color:'#1e2a1e'},
+  {id:3, name:'Power Series Pro', cat:'sport', price:'₮32,000', badge:'', badgeType:'', sizes:['XS','S','M','L','XL'], color:'#2a1a1a'},
+  {id:4, name:'Starter Spike Set', cat:'volleyball', price:'₮28,000', badge:'Шинэ', badgeType:'red', sizes:['S','M','L','XL','2XL','3XL'], color:'#1a1a2e'},
+  {id:5, name:'Pro Rally Kit', cat:'volleyball', price:'₮35,000', badge:'Эрэлттэй', badgeType:'gold', sizes:['S','M','L','XL','2XL','3XL'], color:'#1a2a1a'},
+  {id:6, name:'Elite Serve Pro', cat:'volleyball', price:'₮40,000', badge:'', badgeType:'', sizes:['S','M','L','XL','2XL','3XL'], color:'#2a1520'},
+  {id:7, name:'Champion Block Set', cat:'volleyball', price:'₮45,000', badge:'Онцлох', badgeType:'gold', sizes:['S','M','L','XL','2XL','3XL'], color:'#1e1a2a'},
+  {id:8, name:'Ace Premium Kit', cat:'volleyball', price:'₮48,000', badge:'Премиум', badgeType:'red', sizes:['S','M','L','XL','2XL','3XL'], color:'#2a1a10'},
+];
+
+var currentCat = 'all';
+
+function renderProducts(cat){
+  var grid = document.getElementById('productGrid');
+  var filtered = cat === 'all' ? products : products.filter(function(p){ return p.cat === cat; });
+  grid.innerHTML = '';
+  filtered.forEach(function(p){
+    var sizesHTML = p.sizes.map(function(s,i){
+      return '<div class="sz'+(i===0?' active':'')+'" onclick="selectSize(this)">'+s+'</div>';
+    }).join('');
+    var badgeHTML = p.badge ? '<span class="pbadge '+(p.badgeType==='gold'?'gold':'')+'">' + p.badge + '</span>' : '';
+    var card = document.createElement('div');
+    card.className = 'pcard';
+    card.innerHTML =
+      '<div class="pimg-wrap" style="background:#111">' +
+        '<canvas id="pc'+p.id+'" width="300" height="260"></canvas>' +
+        badgeHTML +
+      '</div>' +
+      '<div class="pinfo">' +
+        '<div class="pname">'+p.name+'</div>' +
+        '<div class="pcat">'+(p.cat==='volleyball'?'Volleyball омсгол':'Спортын омсгол')+'</div>' +
+        '<div class="sizes">'+sizesHTML+'</div>' +
+        '<div class="pfoot">' +
+          '<span class="pprice">'+p.price+' <small>/ ширхэг</small></span>' +
+          '<button class="padd" onclick="addToCart(\''+p.name+'\',\''+p.price+'\')">+ Саг</button>' +
+        '</div>' +
+      '</div>';
+    grid.appendChild(card);
+    drawProduct(p.id, p.color, p.cat);
+  });
+}
+
+function selectSize(el){
+  var siblings = el.parentElement.querySelectorAll('.sz');
+  siblings.forEach(function(s){ s.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+function filterCat(cat, btn){
+  currentCat = cat;
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  btn.classList.add('active');
+  renderProducts(cat);
+  var title = document.getElementById('secTitle');
+  if(cat==='all') title.textContent = 'Бүх бүтээгдэхүүн';
+  else if(cat==='sport') title.textContent = 'Спортын омсгол';
+  else title.textContent = 'Volleyball омсгол';
+  setTimeout(function(){ initProductCanvases(); }, 50);
+}
+
+function showToast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2500);
+}
+
+function addToCart(name, price){
+  cart++;
+  document.getElementById('cartBtn').textContent = '🛒 Саг (' + cart + ')';
+  showToast('✓ ' + name + ' — ' + price + ' сагсанд нэмэгдлээ!');
+}
+
+function drawProduct(id, color, cat){
+  var canvas = document.getElementById('pc'+id);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  function frame(){
+    var c = document.getElementById('pc'+id);
+    if(!c) return;
+    ctx.clearRect(0,0,w,h);
+    var t = Date.now()/1000;
+    var cy = h/2 + Math.sin(t*1.2 + id)*6;
+    var cx = w/2;
+    ctx.save();
+    ctx.shadowColor = '#e8b84b';
+    ctx.shadowBlur = 20;
+    if(cat === 'volleyball'){
+      // Jersey top
+      ctx.beginPath();
+      ctx.roundRect(cx-50,cy-75,100,80,6);
+      ctx.fillStyle = color; ctx.fill();
+      // V-neck
+      ctx.beginPath();
+      ctx.moveTo(cx-18,cy-75); ctx.lineTo(cx,cy-50); ctx.lineTo(cx+18,cy-75);
+      ctx.closePath(); ctx.fillStyle = '#e8b84b'; ctx.fill();
+      // Sleeves
+      ctx.beginPath();
+      ctx.moveTo(cx-50,cy-70); ctx.quadraticCurveTo(cx-80,cy-50,cx-75,cy-20);
+      ctx.lineTo(cx-58,cy-20); ctx.quadraticCurveTo(cx-60,cy-45,cx-35,cy-60);
+      ctx.closePath(); ctx.fillStyle = color; ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(cx+50,cy-70); ctx.quadraticCurveTo(cx+80,cy-50,cx+75,cy-20);
+      ctx.lineTo(cx+58,cy-20); ctx.quadraticCurveTo(cx+60,cy-45,cx+35,cy-60);
+      ctx.closePath(); ctx.fillStyle = color; ctx.fill();
+      // Number
+      ctx.font = 'bold 22px Bebas Neue,sans-serif';
+      ctx.fillStyle = 'rgba(232,184,75,0.9)';
+      ctx.textAlign = 'center'; ctx.fillText(id, cx, cy-22);
+      // Shorts
+      ctx.beginPath();
+      ctx.moveTo(cx-48,cy+8); ctx.quadraticCurveTo(cx-50,cy+55,cx-35,cy+90);
+      ctx.lineTo(cx-10,cy+90); ctx.lineTo(cx,cy+8); ctx.closePath();
+      ctx.fillStyle = color; ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(cx+48,cy+8); ctx.quadraticCurveTo(cx+50,cy+55,cx+35,cy+90);
+      ctx.lineTo(cx+10,cy+90); ctx.lineTo(cx,cy+8); ctx.closePath();
+      ctx.fillStyle = color; ctx.fill();
+      // Waistband
+      ctx.beginPath();
+      ctx.roundRect(cx-48,cy+5,96,12,3);
+      ctx.fillStyle = '#e8b84b'; ctx.fill();
+    } else {
+      // Leggings
+      ctx.beginPath(); ctx.roundRect(cx-50,cy-80,100,18,4); ctx.fillStyle='#e8b84b'; ctx.fill();
+      ctx.beginPath(); ctx.moveTo(cx-48,cy-63); ctx.quadraticCurveTo(cx-52,cy+30,cx-38,cy+85);
+      ctx.lineTo(cx-10,cy+85); ctx.quadraticCurveTo(cx-8,cy+20,cx-4,cy-63); ctx.closePath();
+      ctx.fillStyle=color; ctx.fill();
+      ctx.beginPath(); ctx.moveTo(cx+48,cy-63); ctx.quadraticCurveTo(cx+52,cy+30,cx+38,cy+85);
+      ctx.lineTo(cx+10,cy+85); ctx.quadraticCurveTo(cx+8,cy+20,cx+4,cy-63); ctx.closePath();
+      ctx.fillStyle=color; ctx.fill();
+      ctx.beginPath(); ctx.moveTo(cx-30,cy-63); ctx.quadraticCurveTo(cx-32,cy+20,cx-22,cy+85);
+      ctx.lineTo(cx-18,cy+85); ctx.quadraticCurveTo(cx-28,cy+20,cx-26,cy-63); ctx.closePath();
+      ctx.fillStyle='rgba(232,184,75,0.3)'; ctx.fill();
+    }
+    ctx.restore();
+    requestAnimationFrame(frame);
+  }
+  frame();
+}
+
+function initProductCanvases(){
+  var filtered = currentCat==='all' ? products : products.filter(function(p){ return p.cat===currentCat; });
+  filtered.forEach(function(p){ drawProduct(p.id, p.color, p.cat); });
+}
+
+function initHero(){
+  var canvas = document.getElementById('heroCanvas');
+  var ctx = canvas.getContext('2d');
+  function resize(){ canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  var pts = [];
+  for(var i=0;i<60;i++){
+    pts.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,
+      vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,
+      r:Math.random()*1.5+0.5,a:Math.random()*0.5+0.1});
+  }
+  function frame(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pts.forEach(function(p){
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
+      if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(232,184,75,'+p.a+')'; ctx.fill();
+    });
+    for(var i=0;i<pts.length;i++){
+      for(var j=i+1;j<pts.length;j++){
+        var d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
+        if(d<100){
+          ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.strokeStyle='rgba(232,184,75,'+(0.08*(1-d/100))+')'; ctx.lineWidth=0.5; ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+}
+
+function animatePromo(){
+  var canvas=document.getElementById('promoCanvas');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height,cx=w/2,cy=h/2;
+  function frame(){
+    ctx.clearRect(0,0,w,h);
+    var t=Date.now()/1000;
+    for(var i=0;i<8;i++){
+      var a=t*0.8+i*(Math.PI*2/8),x=cx+Math.cos(a)*60,y=cy+Math.sin(a)*60;
+      ctx.beginPath(); ctx.arc(x,y,6,0,Math.PI*2);
+      ctx.fillStyle='rgba(232,184,75,'+(0.2+0.6*(i/8))+')'; ctx.fill();
+    }
+    ctx.beginPath(); ctx.arc(cx,cy,30,0,Math.PI*2); ctx.fillStyle='rgba(232,184,75,0.1)'; ctx.fill();
+    ctx.font='700 13px Inter'; ctx.fillStyle='#e8b84b'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('SPORT',cx,cy-7); ctx.fillText('SHOP',cx,cy+10);
+    requestAnimationFrame(frame);
+  }
+  frame();
+}
+
+window.addEventListener('load',function(){
+  initHero();
+  animatePromo();
+  renderProducts('all');
+  setTimeout(initProductCanvases, 100);
+});
+</script>
+</body>
+</html>
